@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AddMedicine from './components/AddMedicine/AddMedicine';
 import Medicines from './components/Medicines/Medicines';
 import DayRangeSelect from './components/DayRangeSelect/DayRangeSelect';
-import { addMed, getMeds } from './helpers/medication';
+import { addMed, getMeds, deleteMed } from './helpers/medication';
 import { getTimeRange, updateTimeRange } from './helpers/timeRange';
 
 import './App.css';
@@ -17,9 +17,19 @@ function App() {
         setMedications(updatedMedications);
     };
 
+    const deleteMedAction = (name) => {
+        const updatedMedications = deleteMed(name);
+
+        setMedications(updatedMedications);
+    };
+
     return (
         <div className="App">
-            <Medicines medications={medications} />
+            <Medicines
+                medications={medications}
+                timeRange={timeRange}
+                deleteMedAction={deleteMedAction}
+            />
             <DayRangeSelect
                 timeRange={timeRange}
                 setTimeRange={(data) => {

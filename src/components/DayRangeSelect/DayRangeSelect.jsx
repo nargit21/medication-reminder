@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './DayRangeSelect.css';
+import DateTimePicker from 'react-datetime-picker';
 
 function DayRangeSelect({ timeRange, setTimeRange }) {
     const [fromTime, setFromTime] = useState(timeRange.from);
@@ -9,20 +10,22 @@ function DayRangeSelect({ timeRange, setTimeRange }) {
         <div className="day-range-select-container">
             <div>
                 <label htmlFor="from-time">From time: </label>
-                <input
-                    type="time"
+
+                <DateTimePicker
                     id="from-time"
+                    onChange={setFromTime}
                     value={fromTime}
-                    onChange={(el) => setFromTime(el.target.value)}
+                    locale="ru"
                 />
             </div>
             <div>
                 <label htmlFor="to-time">To time: </label>
-                <input
-                    type="time"
+
+                <DateTimePicker
                     id="to-time"
                     value={toTime}
-                    onChange={(el) => setToTime(el.target.value)}
+                    onChange={setToTime}
+                    locale="ru"
                 />
             </div>
             <div>
