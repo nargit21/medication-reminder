@@ -64,8 +64,8 @@ function Medicines({ medications, timeRange, deleteMedAction }) {
                         <tr key={medication.time.getTime() + medication.name}>
                             <td>
                                 {new Intl.DateTimeFormat('ru', {
-                                    dateStyle: 'full',
-                                    timeStyle: 'long',
+                                    dateStyle: 'medium',
+                                    timeStyle: 'medium',
                                 }).format(medication.time)}
                             </td>
                             <td>{medication.name}</td>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AddMedicine from './components/AddMedicine/AddMedicine';
 import Medicines from './components/Medicines/Medicines';
 import DayRangeSelect from './components/DayRangeSelect/DayRangeSelect';
@@ -22,6 +22,16 @@ function App() {
 
         setMedications(updatedMedications);
     };
+
+    useEffect(() => {
+        if (!localStorage.getItem('medications')) {
+            localStorage.setItem(
+                'medications',
+                `[{"name":"Ципрофлоксацин","count":"5"},{"name":"Офтан Дексаметазон","count":"6"},{"name":"Окутиарз","count":"3"}]`
+            );
+            setMedications(getMeds());
+        }
+    }, []);
 
     return (
         <div className="App">
