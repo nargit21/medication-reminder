@@ -3,14 +3,15 @@ import './Medicines.css';
 function calcTakeData(medications, timeRange) {
     const takeData = [];
 
-    let timeInterval = timeRange.to.getTime() - timeRange.from.getTime();
+    let totalTimeInterval = timeRange.to.getTime() - timeRange.from.getTime();
     medications.forEach((medication) => {
+        const takeTimeInterval = totalTimeInterval / Number(medication.count);
+
         for (let i = 0; i < Number(medication.count) || 0; i++) {
             const res = {};
-
             res.name = medication.name;
             res.time = new Date(
-                timeRange.from.getTime() + timeInterval / (i + 1)
+                timeRange.from.getTime() + takeTimeInterval * (i + 1)
             );
 
             takeData.push(res);
