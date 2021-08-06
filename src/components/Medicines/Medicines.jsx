@@ -4,6 +4,7 @@ function calcTakeData(medications, timeRange) {
     const takeData = [];
 
     let totalTimeInterval = timeRange.to.getTime() - timeRange.from.getTime();
+
     medications.forEach((medication) => {
         const takeTimeInterval = totalTimeInterval / Number(medication.count);
 
