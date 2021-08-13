@@ -4,6 +4,7 @@ import Medicines from './components/Medicines/Medicines';
 import DayRangeSelect from './components/DayRangeSelect/DayRangeSelect';
 import { addMed, getMeds, deleteMed } from './helpers/medication';
 import { getTimeRange, updateTimeRange } from './helpers/timeRange';
+import { sendPushData } from './helpers/push';
 
 import './App.css';
 
@@ -15,12 +16,24 @@ function App() {
         const updatedMedications = addMed(data);
 
         setMedications(updatedMedications);
+        updatePushData();
     };
 
     const deleteMedAction = (name) => {
         const updatedMedications = deleteMed(name);
 
         setMedications(updatedMedications);
+        updatePushData();
+    };
+
+    const setTimeRangeAction = (data) => {
+        updateTimeRange(data);
+        setTimeRange(data);
+        updatePushData();
+    };
+
+    const updatePushData = () => {
+        sendPushData(medications, timeRange);
     };
 
     useEffect(() => {
@@ -42,10 +55,7 @@ function App() {
             />
             <DayRangeSelect
                 timeRange={timeRange}
-                setTimeRange={(data) => {
-                    updateTimeRange(data);
-                    setTimeRange(data);
-                }}
+                setTimeRange={setTimeRangeAction}
             />
             <AddMedicine addAction={addAction} />
         </div>
