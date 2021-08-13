@@ -33,7 +33,6 @@ function Medicines({ medications, timeRange, deleteMedAction }) {
             <table>
                 <thead>
                     <tr>
-                        <th>Date</th>
                         <th>Name</th>
                         <th>Count</th>
                         <th>Delete</th>
