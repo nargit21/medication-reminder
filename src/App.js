@@ -16,24 +16,17 @@ function App() {
         const updatedMedications = addMed(data);
 
         setMedications(updatedMedications);
-        updatePushData();
     };
 
     const deleteMedAction = (name) => {
         const updatedMedications = deleteMed(name);
 
         setMedications(updatedMedications);
-        updatePushData();
     };
 
     const setTimeRangeAction = (data) => {
         updateTimeRange(data);
         setTimeRange(data);
-        updatePushData();
-    };
-
-    const updatePushData = () => {
-        sendPushData(medications, timeRange);
     };
 
     useEffect(() => {
@@ -45,6 +38,10 @@ function App() {
             setMedications(getMeds());
         }
     }, []);
+
+    useEffect(() => {
+        sendPushData(medications, timeRange);
+    }, [medications, timeRange]);
 
     return (
         <div className="App">
